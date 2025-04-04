@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<robot name="barista_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:include filename="caster_wheel.xacro"/>
+<xacro:include filename="standoff_rod.xacro"/>
+<xacro:include filename="cup_holder_tray.xacro"/>
+<xacro:include filename="drive_wheel.xacro"/>
+<xacro:include filename="laser_scanner.xacro"/>
+<xacro:property name="include_laser" value="true"/>
+<material name="blue">
+<color rgba = "0 0 1 1"/>
+</material>
+<material name="white">
+<color rgba = "1 1 1 1"/>
+</material>
+<material name="black">
+  <color rgba="0 0 0 1"/>
+</material>
+<link name="base_footprint">
+<origin xyz="0 0 0" rpy="0 0 0"/>
+</link>
+<link name="chassis">
+ <inertial>
+    <mass value="4.0"/> 
+    <inertia ixx="0.01" iyy="0.004" izz="0.015" ixy="0" ixz="0" iyz="0"/>
+</inertial>
+<visual>
+<geometry>
+<cylinder length="0.155" radius="0.178"/>
+</geometry>
+<origin xyz="0 0 0.1127" rpy=" 0 0 0"/>
+<material name="blue"/>
+</visual>
+<collision>
+<geometry>
+<cylinder length="0.155" radius="0.178"/>
+</geometry>
+<origin xyz="0 0 0.1127" rpy=" 0 0 0"/>
+</collision>
+</link>
+<joint name="base_chassis_joint" type="fixed">
+<parent link="base_footprint"/>
+<child link="chassis"/>
+<origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+<gazebo reference="chassis">
+  <material>Gazebo/Blue</material>
+
+</gazebo>
+<!--xacro definitions-->
+<xacro:wheel side="left" xyz="0 0.155 0.0352"/>
+<xacro:wheel side="right" xyz="0 -0.155 0.0352"/>
+<xacro:caster prefix="front" xyz="0.12 0 0.025"/>
+<xacro:caster prefix="back" xyz="-0.12 0 0.025"/>
+<xacro:stand_off suffix="1" xyz="0.05 0.08 0.3"/>
+<xacro:stand_off suffix="2" xyz="0.05 -0.08 0.3"/>
+<xacro:stand_off suffix="3" xyz="-0.05 0.08 0.3"/>
+<xacro:cup_holder/>
+<xacro:stand_off suffix="4" xyz="-0.05 -0.08 0.3"/>
+<xacro:if value="${include_laser}">
+<xacro:laser/>
+</xacro:if>
+<!--diff drive-->
+
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+
+      <!-- wheels -->
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+
+      <!-- kinematics -->
+      <wheel_separation>0.31</wheel_separation>
+      <wheel_diameter>0.0704</wheel_diameter>
+
+      <!-- limits -->
+      <max_wheel_torque>1.0</max_wheel_torque>
+      <max_wheel_acceleration>2.0</max_wheel_acceleration>
+
+      <!-- output -->
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_footprint</robot_base_frame>
+
+    </plugin>
+  </gazebo>
+</robot>

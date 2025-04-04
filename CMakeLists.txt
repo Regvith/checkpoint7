@@ -25,6 +25,7 @@ install(DIRECTORY
 launch
 models
 urdf
+xacro
 DESTINATION
 share/${PROJECT_NAME}
 )

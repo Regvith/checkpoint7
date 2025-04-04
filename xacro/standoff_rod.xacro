@@ -1,0 +1,38 @@
+<?xml version ="1.0"?>
+<robot name ="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:macro name="stand_off" params="suffix xyz">
+<link name="rod_link_${suffix}">
+  <inertial>
+    <origin xyz="${xyz}" rpy="0 0 0"/>  
+    <mass value="0.5"/>
+    <inertia ixx="0.0001" iyy="0.0001" izz="0.00015" ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+  
+  <visual>
+    <geometry>
+      <cylinder length="0.22" radius="0.01"/>
+    </geometry>
+    <origin xyz="${xyz}" rpy="0 0 0"/>  
+    <material name="white"/>
+  </visual>
+  
+  <collision>
+    <geometry>
+      <cylinder length="0.22" radius="0.01"/>
+    </geometry>
+    <origin xyz="${xyz}" rpy="0 0 0"/> 
+  </collision>
+</link>
+
+<joint name="support_chassis_joint_${suffix}" type="fixed">
+  <parent link="chassis"/>
+  <child link="rod_link_${suffix}"/>
+  <origin xyz="0 0 0"/>  
+</joint>
+
+<gazebo reference="rod_link_${suffix}">
+  <material>Gazebo/White</material>
+  
+</gazebo>
+</xacro:macro>
+</robot>
