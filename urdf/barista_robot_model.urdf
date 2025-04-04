@@ -39,9 +39,10 @@
 <!--This is a where we start to add links for wheels-->
 <link name="base_left_wheel_link">
   <inertial>
-    <mass value="3"/>
-    <inertia ixx="0.0014" iyy="0.0014" izz="0.0025" ixy="0" ixz="0" iyz="0"/>
-  </inertial>
+    <mass value="2"/>
+    <inertia ixx="0.00013" iyy="0.00013" izz="0.00021" ixy="0" ixz="0" iyz="0"/>
+</inertial>
+
   <visual>
     <geometry>
       <cylinder length="0.0206" radius="0.0352"/>
@@ -60,16 +61,17 @@
 <joint name="left_wheel_joint" type="continuous">
   <parent link="chassis"/>
   <child link="base_left_wheel_link"/>
-  <origin xyz="0 -0.155 0.0352" rpy="-1.57 0 0"/>  <!-- Keep the origin in the joint as before -->
+  <origin xyz="0 0.155 0.0352" rpy="-1.57 0 0"/>  <!-- Keep the origin in the joint as before -->
   <axis xyz="0 0 1"/>
   <dynamics friction="0.1"/>
 </joint>
 
 <link name="base_right_wheel_link">
-  <inertial>
-    <mass value="3"/>
-    <inertia ixx="0.0014" iyy="0.0014" izz="0.0025" ixy="0" ixz="0" iyz="0"/>
-  </inertial>
+ <inertial>
+    <mass value="2"/>
+    <inertia ixx="0.00013" iyy="0.00013" izz="0.00021" ixy="0" ixz="0" iyz="0"/>
+</inertial>
+
   <visual>
     <geometry>
       <cylinder length="0.0206" radius="0.0352"/>
@@ -88,7 +90,7 @@
 <joint name="right_wheel_joint" type="continuous">
   <parent link="chassis"/>
   <child link="base_right_wheel_link"/>
-  <origin xyz="0 0.155 0.0352" rpy="-1.57 0 0"/>  <!-- Keep the origin in the joint as before -->
+  <origin xyz="0 -0.155 0.0352" rpy="-1.57 0 0"/>  <!-- Keep the origin in the joint as before -->
   <axis xyz="0 0 1"/>
   <dynamics friction="0.1"/>
 </joint>
