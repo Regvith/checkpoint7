@@ -43,23 +43,23 @@ def generate_launch_description():
         )
     )    
     # Define the URDF file and the package
-    urdf_file = "barista_robot_model.urdf.xacro"
+    xacro_file = "barista_robot_model.urdf.xacro"
     package_description = "barista_robot_description"
     position =[0.0,0.0,0.2]
     orientation=[0.0,0.0,0.0]
     
-    entity_name ="barista_robot-1"
+    entity_name ="barista_robot-2"
     spawn_robot_node = Node(package="gazebo_ros",executable="spawn_entity.py",name="spawn_entity",output="screen",arguments=['-entity',entity_name,'-x',str(position[0]),'-y',str(position[1]),'-z',str(position[2]),'-R',str(orientation[0]),'-P',str(orientation[1]),'-Y',str(orientation[2]),'-topic','/robot_description'])
     rviz_file = "robot_model.rviz"
     rviz_path = os.path.join(get_package_share_directory(package_description),'rviz',rviz_file) 
     # Build the path to the URDF file
-    urdf_path = os.path.join(get_package_share_directory(package_description), "xacro", urdf_file)
+    urdf_path = os.path.join(get_package_share_directory(package_description), "xacro", xacro_file)
     
     # Declare the launch argument for robot_description to pass URDF path as parameter
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        name='robot_state_publisher_node',
+        name='robot_state_publisher_xacro_node',
         emulate_tty=True,
         parameters=[{'use_sim_time': True, 'robot_description': Command(['xacro ', urdf_path])}],
         output="screen"
@@ -73,6 +73,6 @@ def generate_launch_description():
     rviz_node = Node(package="rviz2",executable='rviz2',arguments=['-d','/home/user/ros2_ws/src/barista_robot_description/rviz/robot_model.rviz'])
     return LaunchDescription([ robot_state_publisher_node,DeclareLaunchArgument(
           'world',
-          default_value=[os.path.join(pkg_bar_bot_gazebo, 'worlds', 'box_bot_empty.world'), ''],
+          default_value=[os.path.join(pkg_bar_bot_gazebo, 'worlds', 'empty.world'), ''],
           description='SDF world file'),
         gazebo,joint_state_publisher_node,rviz_node,spawn_robot_node])
