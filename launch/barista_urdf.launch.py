@@ -73,6 +73,6 @@ def generate_launch_description():
     rviz_node = Node(package="rviz2",executable='rviz2',arguments=['-d','/home/user/ros2_ws/src/barista_robot_description/rviz/robot_model.rviz'])
     return LaunchDescription([ robot_state_publisher_node,DeclareLaunchArgument(
           'world',
-          default_value=[os.path.join(pkg_bar_bot_gazebo, 'worlds', 'box_bot_empty.world'), ''],
+          default_value=[os.path.join(pkg_bar_bot_gazebo, 'models', 'empty.world'), ''],
           description='SDF world file'),
         gazebo,joint_state_publisher_node,rviz_node,spawn_robot_node])
