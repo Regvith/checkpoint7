@@ -15,6 +15,8 @@
 <material name="black">
   <color rgba="0 0 0 1"/>
 </material>
+
+<!--base_link-->
 <link name="base_footprint">
 <origin xyz="0 0 0" rpy="0 0 0"/>
 </link>
@@ -37,6 +39,8 @@
 <origin xyz="0 0 0.1127" rpy=" 0 0 0"/>
 </collision>
 </link>
+
+<!--joint chassis-->
 <joint name="base_chassis_joint" type="fixed">
 <parent link="base_footprint"/>
 <child link="chassis"/>
@@ -49,13 +53,17 @@
 <!--xacro definitions-->
 <xacro:wheel side="left" xyz="0 0.155 0.0352"/>
 <xacro:wheel side="right" xyz="0 -0.155 0.0352"/>
+<!--caster wheel-->
 <xacro:caster prefix="front" xyz="0.12 0 0.025"/>
 <xacro:caster prefix="back" xyz="-0.12 0 0.025"/>
-<xacro:stand_off suffix="1" xyz="0.05 0.08 0.3"/>
-<xacro:stand_off suffix="2" xyz="0.05 -0.08 0.3"/>
-<xacro:stand_off suffix="3" xyz="-0.05 0.08 0.3"/>
+<!--standoff rods-->
+<xacro:stand_off suffix="1" xyz="0.1 0.1 0.3"/>
+<xacro:stand_off suffix="2" xyz="0.1 -0.1 0.3"/>
+<xacro:stand_off suffix="3" xyz="-0.1 0.1 0.3"/>
+<xacro:stand_off suffix="4" xyz="-0.1 -0.1 0.3"/>
+
+<!--cupholder-->
 <xacro:cup_holder/>
-<xacro:stand_off suffix="4" xyz="-0.05 -0.08 0.3"/>
 <xacro:if value="${include_laser}">
 <xacro:laser/>
 </xacro:if>
