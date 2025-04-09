@@ -9,6 +9,7 @@
 <material name="black">
   <color rgba="0 0 0 1"/>
 </material>
+<!--chassis-->
 <link name="base_footprint">
 <origin xyz="0 0 0" rpy="0 0 0"/>
 </link>
@@ -36,32 +37,32 @@
 <child link="chassis"/>
 <origin xyz="0 0 0" rpy="0 0 0"/>
 </joint>
+
 <!--This is a where we start to add links for wheels-->
 <link name="base_left_wheel_link">
   <inertial>
     <mass value="2"/>
     <inertia ixx="0.00013" iyy="0.00013" izz="0.00021" ixy="0" ixz="0" iyz="0"/>
 </inertial>
-
   <visual>
     <geometry>
       <cylinder length="0.0206" radius="0.0352"/>
     </geometry>
     <material name="black"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>  <!-- Set origin to zero here -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>  
   </visual>
   <collision>
     <geometry>
       <cylinder length="0.0206" radius="0.0352"/>
     </geometry>
-    <origin xyz="0 0 0" rpy="0 0 0"/>  <!-- Set origin to zero here -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>  
   </collision>
 </link>
 
 <joint name="left_wheel_joint" type="continuous">
   <parent link="chassis"/>
   <child link="base_left_wheel_link"/>
-  <origin xyz="0 0.155 0.0352" rpy="-1.57 0 0"/>  <!-- Keep the origin in the joint as before -->
+  <origin xyz="0 0.155 0.0352" rpy="-1.57 0 0"/> 
   <axis xyz="0 0 1"/>
   <dynamics friction="0.1"/>
 </joint>
@@ -77,20 +78,20 @@
       <cylinder length="0.0206" radius="0.0352"/>
     </geometry>
     <material name="black"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>  <!-- Set origin to zero here -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>  
   </visual>
   <collision>
     <geometry>
       <cylinder length="0.0206" radius="0.0352"/>
     </geometry>
-    <origin xyz="0 0 0" rpy="0 0 0"/>  <!-- Set origin to zero here -->
+    <origin xyz="0 0 0" rpy="0 0 0"/>  
   </collision>
 </link>
 
 <joint name="right_wheel_joint" type="continuous">
   <parent link="chassis"/>
   <child link="base_right_wheel_link"/>
-  <origin xyz="0 -0.155 0.0352" rpy="-1.57 0 0"/>  <!-- Keep the origin in the joint as before -->
+  <origin xyz="0 -0.155 0.0352" rpy="-1.57 0 0"/>  
   <axis xyz="0 0 1"/>
   <dynamics friction="0.1"/>
 </joint>
@@ -306,7 +307,7 @@
 <geometry>
 <cylinder length="0.22" radius="0.01"/>
 </geometry>
-<origin xyz="0.05 0.08 0.3" rpy="0 0 0"/>
+<origin xyz="0.1 0.1 0.3" rpy="0 0 0"/>
 </collision>
 </link>
 <joint name="support_chassis_joint1" type="fixed">
@@ -317,7 +318,7 @@
 <!--second rod-->
 <link name ="rod_link_2">
 <inertial>
-<origin xyz="0.05 -0.08 0.3" rpy="0 0 0"/>
+<origin xyz="0.1 -0.1 0.3" rpy="0 0 0"/>
   <mass value="0.5"/>
   <inertia ixx="0.0001" iyy="0.0001" izz="0.00015" ixy="0" ixz="0" iyz="0"/>
 </inertial>
@@ -325,14 +326,14 @@
 <geometry>
 <cylinder length="0.22" radius="0.01"/>
 </geometry>
-<origin xyz="0.05 -0.08 0.3" rpy="0 0 0"/>
+<origin xyz="0.1 -0.1 0.3" rpy="0 0 0"/>
 <material name="white"/>
 </visual>
 <collision>
 <geometry>
 <cylinder length="0.22" radius="0.01"/>
 </geometry>
-<origin xyz="0.05 -0.08 0.3" rpy="0 0 0"/>
+<origin xyz="0.1 -0.1 0.3" rpy="0 0 0"/>
 </collision>
 </link>
 <joint name="support_chassis_joint2" type="fixed">
@@ -343,7 +344,7 @@
 <!--back rods-->
 <link name ="rod_link_3">
 <inertial>
-<origin xyz="-0.05 0.08 0.3" rpy="0 0 0"/>
+<origin xyz="-0.1 0.1 0.3" rpy="0 0 0"/>
   <mass value="0.5"/>
   <inertia ixx="0.0001" iyy="0.0001" izz="0.00015" ixy="0" ixz="0" iyz="0"/>
 </inertial>
@@ -351,25 +352,26 @@
 <geometry>
 <cylinder length="0.22" radius="0.01"/>
 </geometry>
-<origin xyz="-0.05 0.08 0.3" rpy="0 0 0"/>
+<origin xyz="-0.1 0.1 0.3" rpy="0 0 0"/>
 <material name="white"/>
 </visual>
 <collision>
 <geometry>
 <cylinder length="0.22" radius="0.01"/>
 </geometry>
-<origin xyz="-0.05 0.08 0.3" rpy="0 0 0"/>
+<origin xyz="-0.1 0.1 0.3" rpy="0 0 0"/>
 </collision>
 </link>
+
 <joint name="support_chassis_joint3" type="fixed">
 <parent link="chassis"/>
 <child link="rod_link_3"/>
 <origin xyz="0 0 0"/>
 </joint>
-<!--second rod-->
+<!--fourth rod-->
 <link name ="rod_link_4">
 <inertial>
-<origin xyz="-0.05 -0.08 0.3" rpy="0 0 0"/>
+<origin xyz="-0.1 -0.1 0.3" rpy="0 0 0"/>
   <mass value="0.5"/>
   <inertia ixx="0.0001" iyy="0.0001" izz="0.00015" ixy="0" ixz="0" iyz="0"/>
 </inertial>
@@ -377,14 +379,14 @@
 <geometry>
 <cylinder length="0.22" radius="0.01"/>
 </geometry>
-<origin xyz="-0.05 -0.08 0.3" rpy="0 0 0"/>
+<origin xyz="-0.1 -0.1 0.3" rpy="0 0 0"/>
 <material name="white"/>
 </visual>
 <collision>
 <geometry>
 <cylinder length="0.22" radius="0.01"/>
 </geometry>
-<origin xyz="-0.05 -0.08 0.3" rpy="0 0 0"/>
+<origin xyz="-0.1 -0.1 0.3" rpy="0 0 0"/>
 </collision>
 </link>
 <joint name="support_chassis_joint4" type="fixed">
@@ -412,7 +414,6 @@
   <mass value="2.0"/>
   <inertia ixx="0.0141" iyy="0.0141" izz="0.0256" ixy="0" ixz="0" iyz="0"/>
 </inertial>
-
 </link>
 <joint name="top_base_chassis" type="fixed">
 <parent link="chassis"/>
@@ -423,40 +424,41 @@
 <link name = "laser_scan_link">
  <inertial>
     <mass value="1.0"/>
-    <inertia ixx="0.00052" ixy="0.0" ixz="0.0"
-             iyy="0.00052" iyz="0.0"
-             izz="0.0000833"/>
+    <inertia ixx="0.00104" ixy="0.0" ixz="0.0"
+             iyy="0.00104" iyz="0.0"
+             izz="0.0001666"/>
 </inertial>
 
   <visual>
     <geometry>
-      <mesh filename="package://barista_robot_description/models/meshes/hokuyo_urg_04lx.dae" scale="0.5 0.5 0.5"/>
+      <mesh filename="package://barista_robot_description/models/meshes/hokuyo_urg_04lx.dae" scale="1 1 1"/>
      <!-- <box size="0.05 0.05 0.1"/>  -->
 
     </geometry>
-    <origin xyz="0.14 0 0.19" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
   </visual>
   <collision>
     <geometry>
-      <box size="0.05 0.05 0.05"/> 
+      <box size="0.1 0.1 0.1"/> 
     </geometry>
-    <origin xyz="0.14 0 0.2" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
   </collision>
 </link>
 
 <joint name="laser_joint" type="fixed">
   <parent link="chassis"/>
   <child link="laser_scan_link"/>
-  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <origin xyz="0.14 0 0.2" rpy="0 0 0"/>
 </joint>
+
 <link name="laser_scan_frame">
 </link>
 <joint name="laser_joint_frame" type="fixed">
 <parent link="laser_scan_link"/>
 <child link="laser_scan_frame"/>
-<origin xyz="0.14 0 0.2" rpy="0 0 0"/>
+<origin xyz="0 0 0.05" rpy="0 0 0"/>
 </joint>
-<!---->
+<!--gazebo-->
 <gazebo>
   <material>Gazebo/Blue</material>
   
@@ -600,7 +602,7 @@
             <remapping>~/out:=scan</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
-
+          <frame_name>laser_scan_frame</frame_name>
         </plugin>
     </sensor>
 </gazebo>
