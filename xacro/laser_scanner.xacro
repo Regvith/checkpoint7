@@ -5,14 +5,14 @@
 <link name = "laser_scan_link">
  <inertial>
     <mass value="1.0"/>
-    <inertia ixx="0.00052" ixy="0.0" ixz="0.0"
-             iyy="0.00052" iyz="0.0"
-             izz="0.0000833"/>
+    <inertia ixx="0.00104" ixy="0.0" ixz="0.0"
+             iyy="0.00104" iyz="0.0"
+             izz="0.0001666"/>
 </inertial>
 
   <visual>
     <geometry>
-      <mesh filename="package://barista_robot_description/models/meshes/hokuyo_urg_04lx.dae" scale="0.5 0.5 0.5"/>
+      <mesh filename="package://barista_robot_description/models/meshes/hokuyo_urg_04lx.dae" scale="1 1 1"/>
      <!-- <box size="0.05 0.05 0.1"/>  -->
 
     </geometry>
@@ -20,7 +20,7 @@
   </visual>
   <collision>
     <geometry>
-      <box size="0.05 0.05 0.05"/> 
+      <box size="0.1 0.1 0.1"/> 
     </geometry>
     <origin xyz="0.14 0 0.2" rpy="0 0 0"/>
   </collision>
@@ -36,14 +36,14 @@
 <joint name="laser_joint_frame" type="fixed">
 <parent link="laser_scan_link"/>
 <child link="laser_scan_frame"/>
-<origin xyz="0.14 0 0.2" rpy="0 0 0"/>
+<origin xyz="0.14 0 0.25" rpy="0 0 0"/>
 </joint>
   <gazebo reference="laser_scan_link">
 </gazebo>
   
 <gazebo reference="laser_scan_frame">
     <sensor name="sensor_ray" type="ray">
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0.14 0 0.25 0 0 0</pose>
         <ray>
           <scan>
             <horizontal>
@@ -66,7 +66,7 @@
             <remapping>~/out:=scan</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
-
+          <frame_name>laser_scan_frame</frame_name> 
         </plugin>
     </sensor>
 </gazebo>
